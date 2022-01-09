@@ -1,9 +1,16 @@
 ﻿namespace CharacterHiring.NameGenerator;
 
-public class NameFactory<T> : INameFactory where T : new()
+public class NameFactory<T> : INameFactory
 {
+    private Configuration _config;
+
     public NameFactory()
     {
+    }
+
+    public NameFactory(Configuration config)
+    {
+        _config = config;
     }
 
     public NameFactory(Dictionary<string, List<string>> configuration)
@@ -30,6 +37,5 @@ public class NameFactory<T> : INameFactory where T : new()
     public T Build()
     {
         return (T) Activator.CreateInstance(typeof(T), GenerateName());
-        ;
     }
 }

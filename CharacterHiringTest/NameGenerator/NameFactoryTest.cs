@@ -43,11 +43,11 @@ public class NameFactoryTest
 
 
         _characterNameTestSubject.Configuration = configuration;
-        var result = _characterNameTestSubject.GenerateName();
+        var result = _characterNameTestSubject.Build();
 
-        var firstname = result.NameDict["firstname"];
-        var lastname = result.NameDict["lastname"];
-        var nickname = result.NameDict["nickname"];
+        var firstname = result.FirstName;
+        var lastname = result.LastName;
+        var nickname = result.NickName;
 
         Console.WriteLine($"{firstname} \"{nickname}\" {lastname}");
     }
@@ -75,12 +75,12 @@ public class NameFactoryTest
         configuration.Add("lastbit", lastbits);
 
 
-        _characterNameTestSubject.Configuration = configuration;
-        var result = _characterNameTestSubject.GenerateName();
+        _townNameTestSubject.Configuration = configuration;
+        var result = _townNameTestSubject.Build();
 
-        var firstbit = result.NameDict["firstbit"];
-        var secondbit = result.NameDict["secondbit"];
-        var lastbit = result.NameDict["lastbit"];
+        var firstbit = result.firstBit;
+        var secondbit = result.SecondBit;
+        var lastbit = result.LastBit;
 
         Console.WriteLine($"{firstbit} {secondbit} {lastbit}");
     }

@@ -1,4 +1,4 @@
-﻿namespace CharacterHiring;
+﻿namespace CharacterHiring.NameGenerator.NameTypes;
 
 public class BaseName
 {

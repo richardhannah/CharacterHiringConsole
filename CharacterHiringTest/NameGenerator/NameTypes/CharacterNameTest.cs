@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CharacterHiring;
+using CharacterHiring.NameGenerator;
 using CharacterHiring.NameGenerator.NameTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
