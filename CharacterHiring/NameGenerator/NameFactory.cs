@@ -1,41 +1,30 @@
 ﻿namespace CharacterHiring.NameGenerator;
 
-public class NameFactory<T> : INameFactory
+public class NameFactory<T> : INameFactory<T>
 {
-    private Configuration _config;
-
-    public NameFactory()
-    {
-    }
+    private readonly Configuration _config;
 
     public NameFactory(Configuration config)
     {
         _config = config;
     }
 
-    public NameFactory(Dictionary<string, List<string>> configuration)
+    public T Build()
     {
-        Configuration = configuration;
+        return (T) Activator.CreateInstance(typeof(T), GenerateName());
     }
 
-    public Dictionary<string, List<string>> Configuration { get; set; }
-
-    public NameData GenerateName()
+    private NameData GenerateName()
     {
         var rand = new Random();
         var nameData = new Dictionary<string, string>();
 
-        foreach (var key in Configuration.Keys)
-            nameData[key] = Configuration[key][rand.Next(0, Configuration[key].Count)];
+        foreach (var key in _config.NameLists.Keys)
+            nameData[key] = _config.NameLists[key][rand.Next(0, _config.NameLists[key].Count)];
 
         return new NameData
         {
             NameDict = nameData
         };
-    }
-
-    public T Build()
-    {
-        return (T) Activator.CreateInstance(typeof(T), GenerateName());
     }
 }

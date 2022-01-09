@@ -10,9 +10,9 @@ public interface ICharacterFactory
 
 public class CharacterFactory : ICharacterFactory
 {
-    private readonly INameFactory _nameFactory;
+    private readonly INameFactory<CharacterName> _nameFactory;
 
-    public CharacterFactory(INameFactory nameFactory)
+    public CharacterFactory(INameFactory<CharacterName> nameFactory)
     {
         _nameFactory = nameFactory;
     }
@@ -21,7 +21,7 @@ public class CharacterFactory : ICharacterFactory
     {
         get
         {
-            var generatedName = new CharacterName(_nameFactory.GenerateName());
+            var generatedName = _nameFactory.Build();
 
             var (firstname, lastname, nickname) = generatedName;
 

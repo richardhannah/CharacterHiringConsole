@@ -1,6 +1,6 @@
 ﻿namespace CharacterHiring.NameGenerator;
 
-public interface INameFactory
+public interface INameFactory<T>
 {
-    NameData GenerateName();
+    T Build();
 }
