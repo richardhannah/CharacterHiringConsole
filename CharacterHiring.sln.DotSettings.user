@@ -10,9 +10,5 @@
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=af9b5492_002Dc1f7_002D4c3b_002D9e10_002Db0676e3c9962/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CharacterMarketTest #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;MSTest::8769FE58-5BC3-4054-98D0-33A0FA2D4E60::net6.0::CharacterHiringTest.CharacterMarketTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;MSTest::8769FE58-5BC3-4054-98D0-33A0FA2D4E60::net6.0::CharacterHiringTest.CharacterFactoryTest.generateReturnsCharacterType&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;MSTest::8769FE58-5BC3-4054-98D0-33A0FA2D4E60::net6.0::CharacterHiringTest.NameGeneratorTest.devTest1&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Project Location="E:\projects\Visual Studio Projects\CharacterHiringConsole\CharacterHiringConsole\CharacterHiringTest" Presentation="&amp;lt;CharacterHiringTest&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

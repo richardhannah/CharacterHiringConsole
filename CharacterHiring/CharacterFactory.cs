@@ -1,4 +1,7 @@
-﻿namespace CharacterHiring;
+﻿using CharacterHiring.NameGenerator;
+using CharacterHiring.NameGenerator.NameTypes;
+
+namespace CharacterHiring;
 
 public interface ICharacterFactory
 {
@@ -7,11 +10,28 @@ public interface ICharacterFactory
 
 public class CharacterFactory : ICharacterFactory
 {
-    
+    private readonly INameFactory _nameFactory;
 
+    public CharacterFactory(INameFactory nameFactory)
+    {
+        _nameFactory = nameFactory;
+    }
 
     public Character Generate
     {
-        get { return new Character(); }
+        get
+        {
+            var generatedName = new CharacterName(_nameFactory.GenerateName());
+
+            var (firstname, lastname, nickname) = generatedName;
+
+            return new Character
+            {
+                FirstName = firstname,
+                LastName = lastname,
+                NickName = nickname,
+                FullName = $"{firstname} \"{nickname}\" {lastname}"
+            };
+        }
     }
 }
