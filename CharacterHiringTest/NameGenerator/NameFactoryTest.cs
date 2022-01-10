@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CharacterHiring.NameGenerator;
 using CharacterHiring.NameGenerator.NameTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace CharacterHiringTest.NameGenerator;
 
@@ -10,19 +11,23 @@ namespace CharacterHiringTest.NameGenerator;
 public class NameFactoryTest
 {
     private NameFactory<CharacterName> _characterNameTestSubject;
+
+    private Mock<IConfigFactory> _configFactoryMock;
     private NameFactory<TownName> _townNameTestSubject;
 
     [TestInitialize]
     public void Setup()
     {
+        _configFactoryMock = new Mock<IConfigFactory>();
     }
 
     [TestMethod]
     public void CharacterNameTest()
     {
         var config = new Configuration(typeof(CharacterName), GetValidCharacterNameLists());
+        _configFactoryMock.Setup(c => c.GetConfig(It.IsAny<Type>())).Returns(config);
 
-        _characterNameTestSubject = new NameFactory<CharacterName>(config);
+        _characterNameTestSubject = new NameFactory<CharacterName>(_configFactoryMock.Object);
 
         var result = _characterNameTestSubject.Build();
 
@@ -37,7 +42,9 @@ public class NameFactoryTest
     public void TownNameTest()
     {
         var config = new Configuration(typeof(TownName), GetValidTownNameLists());
-        _townNameTestSubject = new NameFactory<TownName>(config);
+        _configFactoryMock.Setup(c => c.GetConfig(It.IsAny<Type>())).Returns(config);
+
+        _townNameTestSubject = new NameFactory<TownName>(_configFactoryMock.Object);
 
         var result = _townNameTestSubject.Build();
 
@@ -46,6 +53,23 @@ public class NameFactoryTest
         var lastbit = result.LastBit;
 
         Console.WriteLine($"{firstbit} {secondbit} {lastbit}");
+    }
+
+    [TestMethod]
+    public void ThrowsExceptionWhenInvalidConfigurationSupplied()
+    {
+        var config = new Configuration(typeof(TownName), GetValidTownNameLists());
+        _configFactoryMock.Setup(c => c.GetConfig(It.IsAny<Type>())).Returns(config);
+
+        try
+        {
+            _characterNameTestSubject = new NameFactory<CharacterName>(_configFactoryMock.Object);
+        }
+        catch (ArgumentException ex)
+        {
+            Assert.AreEqual("Invalid configuration: CharacterHiring.NameGenerator.NameTypes.CharacterName is required",
+                ex.Message);
+        }
     }
 
     private Dictionary<string, List<string>> GetValidCharacterNameLists()

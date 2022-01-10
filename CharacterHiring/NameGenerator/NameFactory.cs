@@ -3,10 +3,15 @@
 public class NameFactory<T> : INameFactory<T>
 {
     private readonly Configuration _config;
+    private readonly IConfigFactory _configFactory;
 
-    public NameFactory(Configuration config)
+    public NameFactory(IConfigFactory configFactory)
     {
-        _config = config;
+        _configFactory = configFactory;
+        _config = _configFactory.GetConfig(typeof(T));
+
+        if (typeof(T) != _config.ConfigType)
+            throw new ArgumentException($"Invalid configuration: {typeof(T)} is required");
     }
 
     public T Build()
