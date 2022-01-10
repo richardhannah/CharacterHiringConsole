@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CharacterHiring.NameGenerator;
+using CharacterHiring.NameGenerator.Configuration;
 using CharacterHiring.NameGenerator.NameTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -10,7 +11,7 @@ namespace CharacterHiringTest.NameGenerator;
 [TestClass]
 public class NameFactoryTest
 {
-    private NameFactory<CharacterName> _characterNameTestSubject;
+    private NameFactory<CharacterName>? _characterNameTestSubject;
 
     private Mock<IConfigFactory> _configFactoryMock;
     private NameFactory<TownName> _townNameTestSubject;
@@ -24,8 +25,13 @@ public class NameFactoryTest
     [TestMethod]
     public void CharacterNameTest()
     {
-        var config = new Configuration(typeof(CharacterName), GetValidCharacterNameLists());
-        _configFactoryMock.Setup(c => c.GetConfig(It.IsAny<Type>())).Returns(config);
+        var config =
+            new CharacterHiring.NameGenerator.Configuration.Configuration
+            {
+                ConfigType = typeof(CharacterName),
+                NameLists = GetValidCharacterNameLists()
+            };
+        _configFactoryMock.Setup(c => c.GetConfig<It.IsAnyType>()).Returns(config);
 
         _characterNameTestSubject = new NameFactory<CharacterName>(_configFactoryMock.Object);
 
@@ -41,8 +47,14 @@ public class NameFactoryTest
     [TestMethod]
     public void TownNameTest()
     {
-        var config = new Configuration(typeof(TownName), GetValidTownNameLists());
-        _configFactoryMock.Setup(c => c.GetConfig(It.IsAny<Type>())).Returns(config);
+        var config =
+            new CharacterHiring.NameGenerator.Configuration.Configuration
+            {
+                ConfigType = typeof(TownName),
+                NameLists = GetValidTownNameLists()
+            };
+
+        _configFactoryMock.Setup(c => c.GetConfig<It.IsAnyType>()).Returns(config);
 
         _townNameTestSubject = new NameFactory<TownName>(_configFactoryMock.Object);
 
@@ -58,8 +70,14 @@ public class NameFactoryTest
     [TestMethod]
     public void ThrowsExceptionWhenInvalidConfigurationSupplied()
     {
-        var config = new Configuration(typeof(TownName), GetValidTownNameLists());
-        _configFactoryMock.Setup(c => c.GetConfig(It.IsAny<Type>())).Returns(config);
+        var config =
+            new CharacterHiring.NameGenerator.Configuration.Configuration
+            {
+                ConfigType = typeof(TownName),
+                NameLists = GetValidTownNameLists()
+            };
+
+        _configFactoryMock.Setup(c => c.GetConfig<It.IsAnyType>()).Returns(config);
 
         try
         {

@@ -1,35 +1,37 @@
 ﻿namespace CharacterHiring;
 
-public class CharacterMarket
+public interface ICharacterMarket
 {
+    int MarketSize { get; set; }
+    List<Character> Characters { get; }
+    void Stock();
+}
 
-    private List<Character> _characters = new List<Character>();
+public class CharacterMarket : ICharacterMarket
+{
     private readonly ICharacterFactory _characterFactory;
     private readonly ICharacterStore _characterStore;
     private readonly int DEFAULT_MARKETSIZE = 10;
-
-    public int MarketSize { get; set; }
 
     public CharacterMarket(ICharacterFactory characterFactory, ICharacterStore characterStore)
     {
         _characterFactory = characterFactory;
         _characterStore = characterStore;
         MarketSize = DEFAULT_MARKETSIZE;
+    }
 
-    }
-    public List<Character> Characters
-    {
-        get { return _characters; }
-    }
+    public int MarketSize { get; set; }
+
+    public List<Character> Characters { get; private set; } = new();
 
     public void Stock()
     {
-        _characters = _characterStore.GetCharacters();
-        int iter = MarketSize - _characters.Count;
+        Characters = _characterStore.GetCharacters();
+        var iter = MarketSize - Characters.Count;
 
-        for (int i = 0; i < iter ; i++)
+        for (var i = 0; i < iter; i++)
         {
-            _characters.Add(_characterFactory.Generate);
+            Characters.Add(_characterFactory.Generate);
         }
     }
 }
