@@ -20,6 +20,10 @@ public class CharacterMarket : ICharacterMarket
         MarketSize = DEFAULT_MARKETSIZE;
     }
 
+    public CharacterMarket()
+    {
+    }
+
     public int MarketSize { get; set; }
 
     public List<Character> Characters { get; private set; } = new();
