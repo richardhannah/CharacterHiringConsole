@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CharacterHiring\CharacterHiring.csproj" />
-    <ProjectReference Include="..\TestAssembly\TestAssembly.csproj" />
   </ItemGroup>
 
 </Project>
