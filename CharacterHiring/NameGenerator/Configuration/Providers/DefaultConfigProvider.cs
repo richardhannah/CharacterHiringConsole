@@ -2,7 +2,7 @@
 
 namespace CharacterHiring.NameGenerator.Configuration.Providers;
 
-public class DefaultConfigProvider : IConfigProvider
+internal class DefaultConfigProvider : IConfigProvider
 {
     public Configuration LoadConfiguration()
     {

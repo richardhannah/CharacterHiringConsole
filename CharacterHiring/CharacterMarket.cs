@@ -4,6 +4,8 @@ public interface ICharacterMarket
 {
     int MarketSize { get; set; }
     List<Character> Characters { get; }
+
+    Configuration Configuration { get; set; }
     void Stock();
 }
 
@@ -20,9 +22,7 @@ public class CharacterMarket : ICharacterMarket
         MarketSize = DEFAULT_MARKETSIZE;
     }
 
-    public CharacterMarket()
-    {
-    }
+    public Configuration Configuration { get; set; }
 
     public int MarketSize { get; set; }
 

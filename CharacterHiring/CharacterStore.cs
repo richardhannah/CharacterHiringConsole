@@ -6,7 +6,7 @@ public interface ICharacterStore
     void SaveCharacters(List<Character> characterList);
 }
 
-public class CharacterStore : ICharacterStore
+internal class CharacterStore : ICharacterStore
 {
     public List<Character> GetCharacters()
     {

@@ -8,7 +8,7 @@ public interface IConfigFactory
     Configuration GetConfig<T>();
 }
 
-public class ConfigFactory : IConfigFactory
+internal class ConfigFactory : IConfigFactory
 {
     private readonly IConfigProvider _configProvider;
 

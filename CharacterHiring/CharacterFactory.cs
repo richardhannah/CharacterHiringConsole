@@ -8,7 +8,7 @@ public interface ICharacterFactory
     Character Generate { get; }
 }
 
-public class CharacterFactory : ICharacterFactory
+internal class CharacterFactory : ICharacterFactory
 {
     private readonly INameFactory<CharacterName> _nameFactory;
 

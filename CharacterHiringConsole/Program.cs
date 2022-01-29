@@ -1,25 +1,14 @@
 ﻿using CharacterHiring;
-using CharacterHiring.NameGenerator;
-using CharacterHiring.NameGenerator.Configuration;
-using CharacterHiring.NameGenerator.Configuration.Providers;
-using Microsoft.Extensions.DependencyInjection;
+using CharacterHiringConsole;
 using Microsoft.Extensions.Logging;
+using Ninject;
+using Ninject.Modules;
+using TestAssembly;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        //setup our DI
-        var serviceProvider = new ServiceCollection()
-            .AddLogging()
-            .AddSingleton<ICharacterMarket, CharacterMarket>()
-            .AddSingleton(typeof(INameFactory<>), typeof(NameFactory<>))
-            .AddSingleton(typeof(IConfigFactory), typeof(ConfigFactory))
-            .AddSingleton(typeof(IConfigProvider), typeof(DefaultConfigProvider))
-            .AddSingleton(typeof(ICharacterFactory), typeof(CharacterFactory))
-            .AddSingleton(typeof(ICharacterStore), typeof(CharacterStore))
-            .BuildServiceProvider();
-
         //configure console logging
         using var loggerFactory = LoggerFactory.Create(builder =>
         {
@@ -34,7 +23,25 @@ public class Program
         logger.LogDebug("Starting application");
 
         //do the actual work here
-        var characterMarket = serviceProvider.GetService<ICharacterMarket>();
+
+        var config = new Configuration
+        {
+            NameLists = DefaultConfigProvider.GetValidCharacterNameLists()
+        };
+
+        var kernel = new StandardKernel();
+
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+            .Where(a => a.GetExportedTypes().Any(t => t.BaseType == typeof(NinjectModule)));
+
+        kernel.Load(assemblies);
+
+        var characterMarket = kernel.Get<ICharacterMarket>();
+        var class1 = kernel.Get<IClass1>();
+
+        class1.HelloWorld();
+
+        characterMarket.Configuration = config;
         characterMarket.Stock();
         var characters = characterMarket.Characters;
 

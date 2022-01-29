@@ -2,7 +2,7 @@
 
 namespace CharacterHiring.NameGenerator;
 
-public class NameFactory<T> : INameFactory<T>
+internal class NameFactory<T> : INameFactory<T>
 {
     private readonly Configuration.Configuration _config;
     private readonly IConfigFactory _configFactory;
