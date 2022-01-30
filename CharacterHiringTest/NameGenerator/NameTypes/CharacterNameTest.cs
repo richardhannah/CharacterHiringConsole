@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using CharacterHiring.NameGenerator;
-using CharacterHiring.NameGenerator.NameTypes;
+using CharacterHiring.domain.NameGenerator;
+using CharacterHiring.domain.NameGenerator.NameTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CharacterHiringTest.NameGenerator.NameTypes;

@@ -1,4 +1,4 @@
-﻿using CharacterHiring.NameGenerator.Configuration.Providers;
+﻿using CharacterHiring.domain.NameGenerator.Configuration.Providers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CharacterHiringTest.NameGenerator.Configuration.Providers;
@@ -19,7 +19,7 @@ public class DefaultProviderTest
     {
         var result = _testSubject.LoadConfiguration();
         Assert.IsNotNull(result);
-        Assert.IsInstanceOfType(result, typeof(CharacterHiring.NameGenerator.Configuration.Configuration));
+        Assert.IsInstanceOfType(result, typeof(CharacterHiring.domain.NameGenerator.Configuration.Configuration));
         Assert.IsNotNull(result.NameLists);
         Assert.IsNotNull(result.ConfigType);
     }

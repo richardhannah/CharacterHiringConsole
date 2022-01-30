@@ -1,4 +1,6 @@
-﻿namespace CharacterHiring;
+﻿using CharacterHiring.domain;
+
+namespace CharacterHiring;
 
 public interface ICharacterMarket
 {

@@ -1,4 +1,4 @@
-﻿namespace CharacterHiring.NameGenerator;
+﻿namespace CharacterHiring.domain.NameGenerator;
 
 public class NameData
 {

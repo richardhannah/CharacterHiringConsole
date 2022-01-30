@@ -1,7 +1,7 @@
-﻿using CharacterHiring.NameGenerator.Configuration.Providers;
-using CharacterHiring.NameGenerator.NameTypes;
+﻿using CharacterHiring.domain.NameGenerator.Configuration.Providers;
+using CharacterHiring.domain.NameGenerator.NameTypes;
 
-namespace CharacterHiring.NameGenerator.Configuration;
+namespace CharacterHiring.domain.NameGenerator.Configuration;
 
 public interface IConfigFactory
 {

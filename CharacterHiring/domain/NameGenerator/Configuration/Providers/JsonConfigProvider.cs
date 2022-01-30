@@ -1,6 +1,6 @@
-﻿using CharacterHiring.NameGenerator.NameTypes;
+﻿using CharacterHiring.domain.NameGenerator.NameTypes;
 
-namespace CharacterHiring.NameGenerator.Configuration.Providers;
+namespace CharacterHiring.domain.NameGenerator.Configuration.Providers;
 
 public class JsonConfigProvider : IConfigProvider
 {

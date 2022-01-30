@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using CharacterHiring.NameGenerator;
-using CharacterHiring.NameGenerator.Configuration;
-using CharacterHiring.NameGenerator.NameTypes;
+using CharacterHiring.domain.NameGenerator;
+using CharacterHiring.domain.NameGenerator.Configuration;
+using CharacterHiring.domain.NameGenerator.NameTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -26,7 +26,7 @@ public class NameFactoryTest
     public void CharacterNameTest()
     {
         var config =
-            new CharacterHiring.NameGenerator.Configuration.Configuration
+            new CharacterHiring.domain.NameGenerator.Configuration.Configuration
             {
                 ConfigType = typeof(CharacterName),
                 NameLists = GetValidCharacterNameLists()
@@ -48,7 +48,7 @@ public class NameFactoryTest
     public void TownNameTest()
     {
         var config =
-            new CharacterHiring.NameGenerator.Configuration.Configuration
+            new CharacterHiring.domain.NameGenerator.Configuration.Configuration
             {
                 ConfigType = typeof(TownName),
                 NameLists = GetValidTownNameLists()
@@ -71,7 +71,7 @@ public class NameFactoryTest
     public void ThrowsExceptionWhenInvalidConfigurationSupplied()
     {
         var config =
-            new CharacterHiring.NameGenerator.Configuration.Configuration
+            new CharacterHiring.domain.NameGenerator.Configuration.Configuration
             {
                 ConfigType = typeof(TownName),
                 NameLists = GetValidTownNameLists()
@@ -85,7 +85,8 @@ public class NameFactoryTest
         }
         catch (ArgumentException ex)
         {
-            Assert.AreEqual("Invalid configuration: CharacterHiring.NameGenerator.NameTypes.CharacterName is required",
+            Assert.AreEqual(
+                "Invalid configuration: CharacterHiring.domain.NameGenerator.NameTypes.CharacterName is required",
                 ex.Message);
         }
     }

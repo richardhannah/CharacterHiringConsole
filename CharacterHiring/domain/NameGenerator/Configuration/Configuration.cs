@@ -1,4 +1,4 @@
-﻿namespace CharacterHiring.NameGenerator.Configuration;
+﻿namespace CharacterHiring.domain.NameGenerator.Configuration;
 
 public class Configuration
 {

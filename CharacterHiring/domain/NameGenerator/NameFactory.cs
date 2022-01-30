@@ -1,6 +1,6 @@
-﻿using CharacterHiring.NameGenerator.Configuration;
+﻿using CharacterHiring.domain.NameGenerator.Configuration;
 
-namespace CharacterHiring.NameGenerator;
+namespace CharacterHiring.domain.NameGenerator;
 
 internal class NameFactory<T> : INameFactory<T>
 {

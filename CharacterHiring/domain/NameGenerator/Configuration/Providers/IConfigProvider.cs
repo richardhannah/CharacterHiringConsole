@@ -1,4 +1,4 @@
-﻿namespace CharacterHiring.NameGenerator.Configuration.Providers;
+﻿namespace CharacterHiring.domain.NameGenerator.Configuration.Providers;
 
 public interface IConfigProvider
 {

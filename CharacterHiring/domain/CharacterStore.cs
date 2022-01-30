@@ -1,4 +1,4 @@
-﻿namespace CharacterHiring;
+﻿namespace CharacterHiring.domain;
 
 public interface ICharacterStore
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using CharacterHiring.NameGenerator.Configuration;
-using CharacterHiring.NameGenerator.Configuration.Providers;
-using CharacterHiring.NameGenerator.NameTypes;
+using CharacterHiring.domain.NameGenerator.Configuration;
+using CharacterHiring.domain.NameGenerator.Configuration.Providers;
+using CharacterHiring.domain.NameGenerator.NameTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -24,7 +24,7 @@ public class ConfigFactoryTest
     public void ConfigFactoryGetsConfig()
     {
         _configProviderMock.Setup(c => c.LoadConfiguration())
-            .Returns(new CharacterHiring.NameGenerator.Configuration.Configuration
+            .Returns(new CharacterHiring.domain.NameGenerator.Configuration.Configuration
             {
                 ConfigType = typeof(CharacterName),
                 NameLists = new Dictionary<string, List<string>>

@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CharacterHiring;
+using CharacterHiring.domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace CharacterHiringTest;
 
-
 [TestClass]
 public class CharacterMarketTest
 {
-    private CharacterMarket _testSubject;
     private Mock<ICharacterFactory> _characterFactoryMock;
     private Mock<ICharacterStore> _characterStoreMock;
+    private CharacterMarket _testSubject;
 
     [TestInitialize]
     public void Setup()
@@ -47,8 +46,8 @@ public class CharacterMarketTest
 
     private List<Character> CreateCharList(int number)
     {
-        List<Character> chars = new List<Character>();
-        for (int i = 0; i < number; i++)
+        var chars = new List<Character>();
+        for (var i = 0; i < number; i++)
         {
             chars.Add(new Character());
         }

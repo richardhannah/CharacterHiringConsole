@@ -1,7 +1,8 @@
 ﻿using Autofac;
-using CharacterHiring.NameGenerator;
-using CharacterHiring.NameGenerator.Configuration;
-using CharacterHiring.NameGenerator.Configuration.Providers;
+using CharacterHiring.domain;
+using CharacterHiring.domain.NameGenerator;
+using CharacterHiring.domain.NameGenerator.Configuration;
+using CharacterHiring.domain.NameGenerator.Configuration.Providers;
 
 namespace CharacterHiring;
 

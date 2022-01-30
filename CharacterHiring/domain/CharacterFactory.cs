@@ -1,7 +1,7 @@
-﻿using CharacterHiring.NameGenerator;
-using CharacterHiring.NameGenerator.NameTypes;
+﻿using CharacterHiring.domain.NameGenerator;
+using CharacterHiring.domain.NameGenerator.NameTypes;
 
-namespace CharacterHiring;
+namespace CharacterHiring.domain;
 
 public interface ICharacterFactory
 {
