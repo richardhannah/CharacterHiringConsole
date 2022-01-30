@@ -6,7 +6,7 @@ using Ninject.Modules;
 
 namespace CharacterHiringConsole;
 
-public class CharacterHiringBindings : NinjectModule
+public class NinjectBindings : NinjectModule
 {
     public override void Load()
     {

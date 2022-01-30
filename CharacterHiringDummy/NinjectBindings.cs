@@ -1,9 +1,8 @@
 ﻿using Ninject.Modules;
-using TestAssembly;
 
-namespace CharacterHiringConsole;
+namespace CharacterHiringDummy;
 
-public class TestAssemblyBindings : NinjectModule
+public class NinjectBindings : NinjectModule
 {
     public override void Load()
     {
