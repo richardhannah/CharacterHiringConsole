@@ -41,7 +41,7 @@ public class Program
 
         var characters = characterMarket.Characters;
 
-        characters.ForEach(c => Console.WriteLine(c.FullName));
+        characters.ForEach(c => Console.WriteLine(c.ToString()));
     }
 
     private static void RunWithNinject()

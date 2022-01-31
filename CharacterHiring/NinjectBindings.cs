@@ -1,5 +1,6 @@
 ﻿using CharacterHiring;
 using CharacterHiring.domain;
+using CharacterHiring.domain.Attributes;
 using CharacterHiring.domain.NameGenerator;
 using CharacterHiring.domain.NameGenerator.Configuration;
 using Ninject.Modules;
@@ -15,5 +16,6 @@ public class NinjectBindings : NinjectModule
         Bind<IConfigFactory>().To<ConfigFactory>();
         Bind<ICharacterFactory>().To<CharacterFactory>();
         Bind<ICharacterStore>().To<CharacterStore>();
+        Bind<IAttributeFactory>().To<AttributeFactory>();
     }
 }
