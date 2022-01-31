@@ -1,7 +1,7 @@
-﻿using CharacterHiring.domain.NameGenerator.Configuration.Providers;
+﻿using CharacterHiring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CharacterHiringTest.NameGenerator.Configuration.Providers;
+namespace CharacterHiringTest;
 
 [TestClass]
 public class DefaultProviderTest

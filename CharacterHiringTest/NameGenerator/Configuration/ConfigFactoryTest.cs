@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using CharacterHiring;
 using CharacterHiring.domain.NameGenerator.Configuration;
-using CharacterHiring.domain.NameGenerator.Configuration.Providers;
 using CharacterHiring.domain.NameGenerator.NameTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

@@ -1,5 +1,4 @@
-﻿using CharacterHiring.domain.NameGenerator.Configuration.Providers;
-using CharacterHiring.domain.NameGenerator.NameTypes;
+﻿using CharacterHiring.domain.NameGenerator.NameTypes;
 
 namespace CharacterHiring.domain.NameGenerator.Configuration;
 

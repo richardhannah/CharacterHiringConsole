@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
 using CharacterHiring;
-using CharacterHiringConsole;
 using CharacterHiringDummy;
 using Microsoft.Extensions.Logging;
 using Ninject;
@@ -30,21 +29,14 @@ public class Program
 
         //do the actual work here
 
-        config = new Configuration
-        {
-            NameLists = DefaultConfigProvider.GetValidCharacterNameLists()
-        };
-
-
-        RunWithNinject(config);
-        RunWithAutofac(config);
+        RunWithNinject();
+        RunWithAutofac();
 
         logger.LogDebug("All done!");
     }
 
     private static void Execute(ICharacterMarket characterMarket)
     {
-        characterMarket.Configuration = config;
         characterMarket.Stock();
 
         var characters = characterMarket.Characters;
@@ -52,7 +44,7 @@ public class Program
         characters.ForEach(c => Console.WriteLine(c.FullName));
     }
 
-    private static void RunWithNinject(Configuration config)
+    private static void RunWithNinject()
     {
         Console.WriteLine("running with Ninject");
         Console.WriteLine("=====================");
@@ -65,7 +57,7 @@ public class Program
         Execute(characterMarket);
     }
 
-    private static void RunWithAutofac(Configuration config)
+    private static void RunWithAutofac()
     {
         Console.WriteLine("running with Autofac");
         Console.WriteLine("=====================");
@@ -84,9 +76,9 @@ public class Program
     private static void ConfigureNinject()
     {
         kernel = new StandardKernel();
+        kernel.Bind<IConfigProvider>().To<DefaultConfigProvider>();
 
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-            .Where(a => a.GetExportedTypes().Any(t => t.BaseType == typeof(NinjectModule)));
+        var assemblies = SearchAssembliesForBindingModules(typeof(NinjectModule));
 
         kernel.Load(assemblies);
     }
@@ -94,15 +86,20 @@ public class Program
     private static void ConfigureAutofac()
     {
         var builder = new ContainerBuilder();
-        // var assembly = typeof(CharacterMarket).Assembly;
+        builder.RegisterType<DefaultConfigProvider>().As<IConfigProvider>();
 
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-            .Where(a => a.GetExportedTypes().Any(t => t.BaseType == typeof(Module)));
+        var assemblies = SearchAssembliesForBindingModules(typeof(Module));
 
         builder.RegisterAssemblyModules(assemblies.ToArray());
         builder.RegisterType<CharacterMarket>().As<ICharacterMarket>();
         builder.RegisterType<Class1>().As<IClass1>();
         Container = builder.Build();
+    }
+
+    private static IEnumerable<Assembly> SearchAssembliesForBindingModules(Type moduleType)
+    {
+        return AppDomain.CurrentDomain.GetAssemblies()
+            .Where(a => a.GetExportedTypes().Any(t => t.BaseType == moduleType));
     }
 
     private static void ConfigureLogging()

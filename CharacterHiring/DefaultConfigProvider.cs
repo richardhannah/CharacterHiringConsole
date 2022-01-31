@@ -1,12 +1,12 @@
 ﻿using CharacterHiring.domain.NameGenerator.NameTypes;
 
-namespace CharacterHiring.domain.NameGenerator.Configuration.Providers;
+namespace CharacterHiring;
 
-internal class DefaultConfigProvider : IConfigProvider
+public class DefaultConfigProvider : IConfigProvider
 {
-    public Configuration LoadConfiguration()
+    public domain.NameGenerator.Configuration.Configuration LoadConfiguration()
     {
-        return new Configuration
+        return new domain.NameGenerator.Configuration.Configuration
         {
             ConfigType = typeof(CharacterName),
             NameLists = GetValidCharacterNameLists()
